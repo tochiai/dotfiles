@@ -1,4 +1,7 @@
-- link:
-    ~/.vimrc: vimrc
-    ~/.vim: vim/
-
+- link: 
+    ~/.vim: 
+        force: true
+        path: vim/
+    ~/.vimrc: 
+        force: true
+        path: vimrc
