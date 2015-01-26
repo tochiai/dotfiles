@@ -228,3 +228,4 @@ map <Leader>ee :w<CR>:!sh vimtex.sh<CR><CR>
 set exrc
 set paste
 let g:ctrlp_map = '<Leader>t'
+set mouse=
