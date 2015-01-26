@@ -225,3 +225,4 @@ nnoremap <Leader>e- <C-w>_
 map <Leader>ee :w<CR>:!sh vimtex.sh<CR><CR>
  " enable per-project .vimrc files
  set exrc
+ set paste
