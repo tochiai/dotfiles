@@ -224,5 +224,6 @@ nnoremap <Leader>e- <C-w>_
 " compile tex, close Preview, open resume
 map <Leader>ee :w<CR>:!sh vimtex.sh<CR><CR>
  " enable per-project .vimrc files
- set exrc
- set paste
+set exrc
+set paste
+let g:ctrlp_map = '<Leader>t'
