@@ -171,7 +171,7 @@ set shiftwidth=4
 autocmd FileType html setlocal indentkeys-=*<Return> shiftwidth=2 tabstop=2 expandtab
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 expandtab
 autocmd FileType go setlocal shiftwidth=8 tabstop=8
-autocmd FileType python setlocal shiftwidth=4 tabstop=4 expandtab
+autocmd FileType python setlocal shiftwidth=4 tabstop=4 expandtab softtabstop=4
 " :tabn and :tabp keymaps
 map <F7> :tabp<CR>
 map <F8> :tabn<CR>
@@ -229,3 +229,4 @@ set exrc
 set paste
 let g:ctrlp_map = '<Leader>t'
 set mouse=
+set autoread
