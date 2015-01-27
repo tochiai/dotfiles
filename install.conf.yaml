@@ -5,12 +5,6 @@
     ~/.vim:
         force: true
         path: vim/
-    ~/.bashrc:
-        force: true
-        path: bashrc
-    ~/.bash_profile:
-        force: true
-        path: bash_profile
     ~/.gitconfig:
         force: true
         path: gitconfig
