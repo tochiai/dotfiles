@@ -53,7 +53,7 @@ endfunction
 """ mapping the function to leader-shift-f
 noremap <leader><S-f> :call GlobalSeach() <CR>
 " leader timeout
-set timeoutlen=200
+set timeoutlen=300
 "
 " Maintainer:	Bram Moolenaar <Bram@vim.org>
 " Last change:	2008 Dec 17

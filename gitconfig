@@ -1,0 +1,15 @@
+[branch]
+    autosetuprebase = remote
+[user]
+    name = tochiai
+    name = Tyler Ochiai
+    email = tyler@trove.com
+[init]
+    templatedir = ~/.git_template
+[tag]
+    sort = version:refname
+[alias]
+    co = checkout
+[color]
+	status = true
+	pull = true
