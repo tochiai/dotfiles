@@ -5,3 +5,7 @@
     ~/.vimrc: 
         force: true
         path: vimrc
+- shell:
+    - [git submodule init, sets up .git/config to have submodules in the repo]
+    - [git submodule update --recursive, clones the submodules]
+    
