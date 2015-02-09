@@ -230,3 +230,5 @@ set paste
 let g:ctrlp_map = '<Leader>t'
 set mouse=
 set autoread
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%>100v.\+/
