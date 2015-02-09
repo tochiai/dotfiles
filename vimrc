@@ -12,6 +12,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 
 " All of your Plugins must be added before the following line
+Plugin 'JarrodCTaylor/vim-python-test-runner'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -232,3 +233,5 @@ set mouse=
 set autoread
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%>100v.\+/
+let g:vundle_default_git_proto = 'git'
+nnoremap<Leader>nt :NosetestMethod<CR>
