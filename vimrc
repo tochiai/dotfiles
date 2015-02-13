@@ -231,7 +231,9 @@ set paste
 let g:ctrlp_map = '<Leader>t'
 set mouse=
 set autoread
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%>100v.\+/
+" needs more logic, currently ignores splits
+" highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+" match OverLength /\%>100v.\+/
 let g:vundle_default_git_proto = 'git'
 nnoremap<Leader>nt :NosetestMethod<CR>
+map <Leader>s :wall<CR>:sh<CR>
