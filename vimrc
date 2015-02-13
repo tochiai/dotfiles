@@ -183,7 +183,6 @@ map <C-a> :%w !pbcopy<CR><CR>
 map <Leader>p "+]p
 map <Leader>P "+]P
 map <leader>y "+y
-map <leader>t "+Y
 map <leader>x "+x
 
 " insert // at beginning of line
@@ -237,3 +236,5 @@ set autoread
 let g:vundle_default_git_proto = 'git'
 nnoremap<Leader>nt :NosetestMethod<CR>
 map <Leader>s :wall<CR>:sh<CR>
+map <Leader>ya f("Ayi(
+map <Leader>pa f("Ap
