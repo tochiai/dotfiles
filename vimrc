@@ -192,6 +192,7 @@ map <F3> ^2x
 
 " black hole delete
 map <Leader>d "_d
+map <Leader>D "_D
 
 nnoremap ' `
 " help
