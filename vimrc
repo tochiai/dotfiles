@@ -208,7 +208,7 @@ map <Leader>vr :vs ~/.vimrc<CR>
 " write
 map <Leader>w :wall<CR>
 " quit without saving"
-map <Leader>q :q!<CR>
+map <Leader>q :bd!<CR>
 " put { around selection
 :vnoremap _{ <Esc>`>a}<Esc>`<i{<Esc>
 
@@ -227,7 +227,6 @@ nnoremap <Leader>e- <C-w>_
 map <Leader>ee :w<CR>:!sh vimtex.sh<CR><CR>
  " enable per-project .vimrc files
 set exrc
-set paste
 let g:ctrlp_map = '<Leader>t'
 set mouse=
 set autoread
@@ -239,3 +238,5 @@ nnoremap<Leader>nt :NosetestMethod<CR>
 map <Leader>s :wall<CR>:sh<CR>
 map <Leader>ya f("Ayi(
 map <Leader>pa f("Ap
+map <Leader>b :CtrlPBuffer<CR>
+map <Leader>V :so $MYVIMRC<CR>
