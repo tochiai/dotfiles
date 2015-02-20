@@ -111,7 +111,7 @@ if has('mouse')
   set mouse=a
 endif
 
-set wildignore+=*/bower_components,*/node_modules,*/dist,*/platforms,*/plugins
+set wildignore+=*/bower_components,*/node_modules,*/dist,*/platforms,*/plugins,*.pyc
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
@@ -238,7 +238,7 @@ nnoremap<Leader>nt :NosetestMethod<CR>
 map <Leader>s :wall<CR>:sh<CR>
 map <Leader>ya f("Ayi(
 map <Leader>pa f("Ap
-map <Leader>b :CtrlPBuffer<CR>
+map <Leader>b :CtrlPMRU<CR>
 map <Leader>V :so $MYVIMRC<CR>
 set shell=/bin/bash\ --login
 highlight ColorColumn ctermbg=magenta
