@@ -240,3 +240,6 @@ map <Leader>ya f("Ayi(
 map <Leader>pa f("Ap
 map <Leader>b :CtrlPBuffer<CR>
 map <Leader>V :so $MYVIMRC<CR>
+set shell=/bin/bash\ --login
+highlight ColorColumn ctermbg=magenta
+set colorcolumn=101
