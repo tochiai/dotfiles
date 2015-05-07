@@ -10,9 +10,28 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'kien/ctrlp.vim'
+Plugin 'klen/python-mode'
+
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-f>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+Plugin 'JarrodCTaylor/vim-python-test-runner'
+
+Plugin 'mileszs/ack.vim'
+Plugin 'rking/ag.vim'
 
 " All of your Plugins must be added before the following line
-Plugin 'JarrodCTaylor/vim-python-test-runner'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -166,7 +185,6 @@ set is
 
 " improved indenting
 set autoindent
-set smartindent
 set tabstop=4
 set shiftwidth=4
 autocmd FileType html setlocal indentkeys-=*<Return> shiftwidth=2 tabstop=2 expandtab
@@ -234,12 +252,31 @@ set autoread
 " highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 " match OverLength /\%>100v.\+/
 let g:vundle_default_git_proto = 'git'
-nnoremap<Leader>nt :NosetestMethod<CR>
-map <Leader>s :wall<CR>:sh<CR>
+map <Leader><Leader> :wall<CR>:sh<CR>
 map <Leader>ya f("Ayi(
 map <Leader>pa f("Ap
 map <Leader>b :CtrlPMRU<CR>
 map <Leader>V :so $MYVIMRC<CR>
 set shell=/bin/bash\ --login
 highlight ColorColumn ctermbg=magenta
-set colorcolumn=101
+map <Leader>u :Ultisnips
+autocmd BufWritePre *.py :%s/\s\+$//e
+autocmd WinEnter * :vertical resize 105
+let g:pymode_lint_on_fly = 1
+let g:pymode_lint_checkers = ['pyflakes']
+set fdo-=search
+let g:pymode_options_max_line_length = 100
+nnoremap hg gt
+nnoremap Hg gT
+let g:pymode_lint_cwindow = 0
+let g:pymode_rope_completion = 0
+let g:pymode_run = 0
+let g:ctrlp_extensions = ['tag', 'buffertag']
+map <C-p> :CtrlPTag<CR>
+map <Leader>hg :tabe ../ic-icepick/server \| cd ../ic-icepick/server<CR>
+map <Leader>e :CtrlPMRU<CR>
+set undofile
+set undodir=~/.vimundo/
+map Y y$
+" always show status line
+set laststatus=2
