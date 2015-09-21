@@ -1,6 +1,10 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+for f in split(glob('~/.vim/plugin/*.vim'), '\n')
+    exe 'source' f
+endfor
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -268,6 +272,7 @@ set fdo-=search
 let g:pymode_options_max_line_length = 100
 nnoremap hg gt
 nnoremap Hg gT
+let g:pymode_rope = 1
 let g:pymode_lint_cwindow = 0
 let g:pymode_rope_completion = 0
 let g:pymode_run = 0
@@ -280,3 +285,7 @@ set undodir=~/.vimundo/
 map Y y$
 " always show status line
 set laststatus=2
+nnoremap hg gt
+nnoremap hf gT
+vnoremap // y/<C-R>"<CR>
+hi Folded ctermbg=8
