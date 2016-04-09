@@ -1,9 +1,7 @@
+" Use Vim settings, rather than Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
 set nocompatible              " be iMproved, required
 filetype off                  " required
-
-for f in split(glob('~/.vim/plugin/*.vim'), '\n')
-    exe 'source' f
-endfor
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -12,7 +10,17 @@ call vundle#begin()
 " "call vundle#begin('~/some/path/here')
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+Plugin 'pangloss/vim-javascript'
 
+Plugin 'kana/vim-textobj-user'
+Plugin 'glts/vim-textobj-comment'
+Plugin 'suan/vim-instant-markdown'
+
+Plugin 'tpope/vim-fugitive'
+
+Plugin 'fatih/vim-go'
+" currently breaks because compiling YCM problems
+" Plugin 'valloric/YouCompleteMe'
 Plugin 'kien/ctrlp.vim'
 Plugin 'klen/python-mode'
 
@@ -22,16 +30,10 @@ Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
 
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-f>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
 Plugin 'JarrodCTaylor/vim-python-test-runner'
 
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-surround'
 Plugin 'mileszs/ack.vim'
 Plugin 'rking/ag.vim'
 
@@ -49,6 +51,20 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
+for f in split(glob('~/.vim/plugin/*.vim'), '\n')
+    exe 'source' f
+endfor
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-f>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let g:UltiSnipsListSnippets="<s-tab>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+au FileType go :UltiSnipsAddFiletypes go
 
 " leader keymap
 let mapleader = ","
@@ -93,10 +109,6 @@ if v:progname =~? "evim"
   finish
 endif
 
-" Use Vim settings, rather than Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
-
 " Set up directories for swp and ~ files
 set backupdir=./.backup,.,/tmp
 set directory=.,./.backup,/tmp
@@ -118,6 +130,7 @@ set incsearch		" do incremental searching
 
 set autowriteall
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
+" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
 
 " Don't use Ex mode, use Q for formatting
@@ -134,7 +147,7 @@ if has('mouse')
   set mouse=a
 endif
 
-set wildignore+=*/bower_components,*/node_modules,*/dist,*/platforms,*/plugins,*.pyc
+set wildignore+=*/bower_components,*/node_modules,*/dist,*/platforms,*/plugins,*.pyc,*/env,*/Godeps
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
@@ -193,7 +206,7 @@ set tabstop=4
 set shiftwidth=4
 autocmd FileType html setlocal indentkeys-=*<Return> shiftwidth=2 tabstop=2 expandtab
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 expandtab
-autocmd FileType go setlocal shiftwidth=8 tabstop=8
+autocmd FileType go setlocal shiftwidth=4 tabstop=4
 autocmd FileType python setlocal shiftwidth=4 tabstop=4 expandtab softtabstop=4
 " :tabn and :tabp keymaps
 map <F7> :tabp<CR>
@@ -213,7 +226,6 @@ map <F2> <S-i>//<Esc>
 map <F3> ^2x
 
 " black hole delete
-map <Leader>d "_d
 map <Leader>D "_D
 
 nnoremap ' `
@@ -223,6 +235,8 @@ map <Leader>f :h<Space>
 map <Leader>o o<Esc>
 " make a new line above
 map <Leader>O O<Esc>
+" new vsplit
+map <Leader>v :vs<CR> 
 " edit vimrc in split"
 map <Leader>vr :vs ~/.vimrc<CR> 
 " write and quit"
@@ -230,12 +244,11 @@ map <Leader>vr :vs ~/.vimrc<CR>
 " write
 map <Leader>w :wall<CR>
 " quit without saving"
-map <Leader>q :bd!<CR>
+map <Leader>q :q<CR>
 " put { around selection
 :vnoremap _{ <Esc>`>a}<Esc>`<i{<Esc>
-
 " easier split navigation
-nnoremap <C-J> <C-W><C-J>
+nnoremap <C-j> <C-W><C-j>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
@@ -256,6 +269,7 @@ set autoread
 " highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 " match OverLength /\%>100v.\+/
 let g:vundle_default_git_proto = 'git'
+map <Leader>s :set cursorline! cursorcolumn! <CR>
 map <Leader><Leader> :wall<CR>:sh<CR>
 map <Leader>ya f("Ayi(
 map <Leader>pa f("Ap
@@ -263,9 +277,7 @@ map <Leader>b :CtrlPMRU<CR>
 map <Leader>V :so $MYVIMRC<CR>
 set shell=/bin/bash\ --login
 highlight ColorColumn ctermbg=magenta
-map <Leader>u :Ultisnips
 autocmd BufWritePre *.py :%s/\s\+$//e
-autocmd WinEnter * :vertical resize 105
 let g:pymode_lint_on_fly = 1
 let g:pymode_lint_checkers = ['pyflakes']
 set fdo-=search
@@ -278,7 +290,6 @@ let g:pymode_rope_completion = 0
 let g:pymode_run = 0
 let g:ctrlp_extensions = ['tag', 'buffertag']
 map <C-p> :CtrlPTag<CR>
-map <Leader>hg :tabe ../ic-icepick/server \| cd ../ic-icepick/server<CR>
 map <Leader>e :CtrlPMRU<CR>
 set undofile
 set undodir=~/.vimundo/
@@ -288,4 +299,35 @@ set laststatus=2
 nnoremap hg gt
 nnoremap hf gT
 vnoremap // y/<C-R>"<CR>
-hi Folded ctermbg=8
+hi Folded ctermbg=7
+let g:pymode_lint_message = 1
+
+" vim-go stuff
+let g:go_fmt_command = 'goimports'
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_fmt_autosave = 1
+
+map <Leader>gt :GoTest<CR>
+map <Leader>gf :GoTestFunc<CR>
+map <Leader>gl :GoLint<CR>
+map <Leader>ga :GoAlternate<CR>
+map <Leader>gb :GoBuild<CR>
+colo valloric
+map <Leader>m :set hls!<CR>
+if filereadable(".git-vimrc")
+	so .git-vimrc
+endif
+let g:ctrlp_use_caching = 0
+let g:instant_markdown_slow = 1
+let g:go_metalinter_autosave=1
+let g:go_metalinter_autosave_enabled = ['golint']
+
+map <Leader>nt :tabe <C-r>%<CR>
+set pt=<F12>
+set hidden
+set noautowriteall

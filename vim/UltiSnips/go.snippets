@@ -1,0 +1,35 @@
+snippet ft "Test function"
+func Test${1:Func}(t *testing.T) \{
+	assert := assert.New(t)
+	$0
+\}
+endsnippet
+
+snippet meth "method"
+func (${1:r} ${2:*R}) ${3:Func}(${4:args})${5:returnvals}{
+	$0
+}
+endsnippet
+
+snippet iferr "if error not nil return err"
+if err != nil{
+	return $0err
+}
+endsnippet
+
+snippet func "function"
+func ${1:Func}(${2:args})${3:outputs}\{
+	$0
+\}
+endsnippet
+
+snippet main
+package main
+func main (){
+	$0
+}
+endsnippet
+
+snippet echobadreq
+echo.NewHTTPError(http.StatusBadRequest)
+endsnippet

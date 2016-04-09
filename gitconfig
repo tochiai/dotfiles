@@ -1,9 +1,8 @@
 [branch]
-    autosetuprebase = remote
+	autosetuprebase = remote
 [user]
-    name = tochiai
-    name = Tyler Ochiai
-    email = tyler@trove.com
+	name = Tyler Ochiai
+	email = tyler@trove.com
 [init]
     templatedir = ~/.git_template
 [tag]
@@ -13,3 +12,24 @@
 [color]
 	status = true
 	pull = true
+[merge]
+	tool = p4merge
+[mergetool "p4merge"]
+	path = /Applications/p4merge.app/Contents/MacOS/p4merge
+[diff]
+	tool = p4merge
+[difftool "p4merge"]
+	path = /Applications/p4merge.app/Contents/MacOS/p4merge
+[core]
+	excludesfile = /Users/tyler/.gitignore_global
+[difftool "sourcetree"]
+	cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$LOCAL\" \"$REMOTE\"
+[mergetool "sourcetree"]
+	cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+	trustExitCode = true
+[push]
+	default = simple
+[credential]
+	helper = osxkeychain
+[url "git@github.com:"]
+	insteadOf = https://github.com/
